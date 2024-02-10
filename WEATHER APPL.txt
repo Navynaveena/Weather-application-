@@ -1,0 +1,63 @@
+HTML CODE
+
+
+app.js
+--------------
+function getWeather() {
+    const apiKey = 'c3ee57595b0d3dfa103421bf9c23be73';
+    const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
+
+    const cityInput = document.getElementById('cityInput').value;
+    const units = 'metric';
+
+    const url = ${apiUrl}?q=${cityInput}&units=${units}&appid=${apiKey};
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Weather data:', data); // Add this line to log the data
+
+            const cityElement = document.getElementById('city');
+            const temperatureElement = document.getElementById('temperature');
+            const descriptionElement = document.getElementById('description');
+
+            cityElement.textContent = City: ${data.name};
+            temperatureElement.textContent = Temperature: ${data.main.temp}°C;
+            descriptionElement.textContent = Description: ${data.weather[0].description};
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            alert('Error fetching weather data. Please try again.');
+        });
+}
+
+
+
+JAVASCRIPT CODE :
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Simple Weather App</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="weather-container">
+<h1>Weather App</h1>
+<div id="weather-data">
+<input type="text" id="cityInput"
+placeholder="Enter city">
+<button onclick="getWeather()">Get
+Weather</button>
+<div id="city"></div>
+<div id="temperature"></div>
+<div id="description"></div>
+</div>
+</div>
+ <script src="app.js"></script>
+
+
+
+
+
